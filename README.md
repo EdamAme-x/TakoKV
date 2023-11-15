@@ -96,8 +96,25 @@ MemberList2.forEach(row => {
 })
 
 const rows2: number = tako.getRows("members"); // 3 (Amex..., Tako..., Octo...)
-tako.deleteRow("members", rows2); // delete Octo's Row
+tako.deleteRow("members", rows2 - 1); // delete Octo's Row
+tako.update(); // Update KV
 
+const MemberList3: {
+  id: number,
+  name: string,
+}[] = tako.getTable("members");
 
+MemberList3.forEach(row => {
+  console.log(`${row.id}: ${row.name}`);
+  /*
+  ** 0: Amex 
+  ** 1: Tako
+  **/
+})
+
+tako.deleteTable("members"); // delete Table
+tako.update(); // Update KV
+
+console.log(tako.getTable("members")); // null
 
 ```
