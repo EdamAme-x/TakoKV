@@ -34,7 +34,7 @@ const datas: {
   }
 ]
 
-for (let i = 0; i < data.length; i++ ) {
+for (let i = 0; i < datas.length; i++ ) {
   tako.insertRow("members", i, "name", datas[i].name);
   tako.insertRow("members", i, "password", datas[i].password);
 }
