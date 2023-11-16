@@ -10,7 +10,6 @@ DenoKV's wrapper library / kv query library
 
 ```ts
 import { TakoKV } from "https://deno.land/x/takokv/mod.ts";
-
 const tako = new TakoKV(await Deno.openKv());
 await tako.setup();
 
@@ -35,13 +34,19 @@ const datas: {
 ]
 
 for (let i = 0; i < datas.length; i++ ) {
-  tako.insertRow("members", i, "name", datas[i].name);
-  tako.insertRow("members", i, "password", datas[i].password);
+  tako.insertRow("members", i, {
+    "name": datas[i].name,
+    "password": datas[i].password
+  });
+  tako.insertRow("members", i, {
+    "name": datas[i].name,
+    "password": datas[i].password
+  });
 }
 
 /** Get **/
 const rows: number = tako.getRows("members"); // 2 (Amex..., Tako...)
-const columns: number = tako.getColmuns("members"); // 3 (id, name, password)
+const columns: number = tako.getColumns("members"); // 3 (id, name, password)
 
 // Add Last Row
 tako.insertRow("members", rows + 1, {
@@ -72,7 +77,7 @@ NameList.forEach(name => {
   **/
 })
 
-const firstUser: string[] | false = tako.getRow("members", "id", 0); // Search by row value from column in Table
+const firstUser: string[] | null = tako.getRow("members", "id", 0); // Search by row value from column in Table
 
 console.log(firstUser ?? firstUser[0]); // Amex
 
@@ -88,7 +93,7 @@ const MemberList2: {
 // MemberList2.id.length : Rows num
 
 for(let i = 0; i < MemberList2.id.length; i++) {
-  console.log(`${row.id[i]}: ${row.name[i]}`);
+  console.log(`${MemberList2.id[i]}: ${MemberList2.name[i]}`);
   /*
   ** 0: Amex 
   ** 1: Tako
@@ -106,7 +111,7 @@ const MemberList3: {
 } = tako.getTable("members");
 
 for(let i = 0; i < MemberList3.id.length; i++) {
-  console.log(`${row.id}: ${row.name}`);
+  console.log(`${MemberList3.id[i]}: ${MemberList3.name[i]}`);
   /*
   ** 0: Amex 
   ** 1: Tako
