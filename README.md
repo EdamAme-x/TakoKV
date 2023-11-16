@@ -12,7 +12,7 @@ DenoKV's wrapper library / kv query library
 import { TakoKV } from "https://deno.land/x/takokv/mod.ts";
 
 const tako = new TakoKV(await Deno.openKv());
-
+await tako.setup();
 
 /** Set / Create **/
 
@@ -35,8 +35,8 @@ const datas: {
 ]
 
 for (let i = 0; i < data.length; i++ ) {
-  tako.setRow("members", i, "name", datas[i].name);
-  tako.setRow("members", i, "password", datas[i].password);
+  tako.createRow("members", i, "name", datas[i].name);
+  tako.createRow("members", i, "password", datas[i].password);
 }
 
 /** Get **/
@@ -44,8 +44,8 @@ const rows: number = tako.getRows("members"); // 2 (Amex..., Tako...)
 const columns: number = tako.getColmuns("members"); // 3 (id, name, password)
 
 // Add Last Row
-tako.setRow("members", rows + 1, "name", "Octo");
-tako.setRow("members", rows + 1, "password", "o");
+tako.createRow("members", rows + 1, "name", "Octo");
+tako.createRow("members", rows + 1, "password", "o");
 
 tako.update() // Patch
 

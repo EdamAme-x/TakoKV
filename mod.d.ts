@@ -5,6 +5,8 @@ export interface KValue {
 }
 
 export type DB = Record<string, {
-  [key: string]: any[] | number; // column & row
-  id: number; // id
-} | {}>; // tablet
+  [key: string]: any[]; // column & row
+  id: number[]; // id
+} | {
+  [key: string]: any[]
+}>; // table
