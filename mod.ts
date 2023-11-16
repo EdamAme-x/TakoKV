@@ -58,7 +58,7 @@ export class TakoKV {
     return true;
   }
 
-  insertRow(tableName: string, columnId: number, row: {
+  insertRow(tableName: string, rowId: number, row: {
     [key: string]: any
   }): boolean {
     
@@ -66,11 +66,11 @@ export class TakoKV {
     
     for (const key of Object.keys(row)) {
       console.log(this.current[tableName])
-      this.current[tableName][key] = this._shiftArray(this.current[tableName][key], columnId);
-      this.current[tableName][key][columnId] = row[key]; // INSERT
+      this.current[tableName][key] = this._shiftArray(this.current[tableName][key], rowId);
+      this.current[tableName][key][rowId] = row[key]; // INSERT
     }
     
-    this._IDgen(tableName, this.current[tableName][columnId].length);
+    this._IDgen(tableName, this.current[tableName].id.length);
 
     return true;
   }
