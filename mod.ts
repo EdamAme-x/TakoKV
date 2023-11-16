@@ -12,6 +12,7 @@ export class TakoKV {
     if (!init.value) {
       this.KV.set(["_takokv_init"], true);
       this.KV.set(["_takokv_db"], {}); // tables
+      this.KV.set(["_takokv_last"], Date.now()) // last update
     }
 
     this.before = this.KV.get(["_takokv_db"]);
@@ -22,6 +23,14 @@ export class TakoKV {
   current: DB = {}; // current databse
 
   /** @Methods **/
+  existTable(tableName: string): boolean {
+    if (this.current[tableName]) {
+      return true;
+    }
+
+    return false;
+  }
+    
   createTable(tableName: string): boolean {
     if (!this.current[tableName]) {
       this.current[tableName] = {};

@@ -64,7 +64,7 @@ MemberList.forEach(row => {
   **/
 })
 
-const NameList: string[] = tako.getTable("members").getCol("name"); // from Column in Table
+const NameList: string[] = tako.getCol("members", "name"); // from Column in Table
 
 NameList.forEach(name => {
   console.log(`${name}`);
@@ -75,7 +75,7 @@ NameList.forEach(name => {
   **/
 })
 
-const firstUser: string[] | null = tako.getTable("members").getCol("name").getRow("id", 0); // Search by row value from column in Table
+const firstUser: string[] | null = tako.getRow("members", "id", 0); // Search by row value from column in Table
 
 console.log(firstUser ?? firstUser[0]); // Amex
 
@@ -119,3 +119,9 @@ tako.update(); // Update KV
 
 console.log(tako.getTable("members")); // null
 ```
+
+| id | name | password|
+|---|---|---|
+|0|Amex|a|
+|1|Tako|t|
+|2|Octo|o|
