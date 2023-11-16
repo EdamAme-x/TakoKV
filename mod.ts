@@ -90,8 +90,16 @@ export class TakoKV {
     return this.getTable(tableName)[columnName]
   }
 
-  getRow() {
+  getRow(tableName: string, columnName: string, searchValue: any): any[] | null {
+    let tragetIndex = null;
     
+   const searchResult: any[] | undefined = this.getTable(tableName)[columnName].find((row: any) => row[columnName]);
+
+    if (searchResult === undefined) {
+      return null;
+    }
+
+    return searchResult;
   } // 👹
 
   deleteColumn(tableName: string, columnName: string): boolean {
