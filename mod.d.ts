@@ -4,9 +4,11 @@ export interface KValue {
   versionstamp: number;
 }
 
-export type DB = Record<string, {
-  [key: string]: any[]; // column & row
-  id: number[]; // id
-} | {
+export interface Table {
+  [key: string]: any[], // Column Name
+  id: number[]
+}
+
+export type DB = Record<string, Table | {
   [key: string]: any[]
 }>; // table
