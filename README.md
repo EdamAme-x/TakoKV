@@ -4,6 +4,8 @@ DenoKV's wrapper library / kv query library
 
 どこかの軟体生物の人の為に作ります
 
+![TakoKV-Logo](/assets/takoKV.svg)
+
 ## Examples
 
 ```ts
@@ -116,5 +118,4 @@ tako.deleteTable("members"); // delete Table
 tako.update(); // Update KV
 
 console.log(tako.getTable("members")); // null
-
 ```

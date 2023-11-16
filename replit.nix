@@ -1,5 +1,6 @@
 { pkgs }: {
     deps = [
-      pkgs.cowsay
+        pkgs.unixtools.netstat
+        pkgs.deno
     ];
 }
