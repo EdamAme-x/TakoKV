@@ -17,8 +17,8 @@ const tako = new TakoKV(await Deno.openKv());
 /** Set / Create **/
 
 tako.createTable("members"); // only id
-tako.setColumn("members", "name"); // add name column
-tako.setColumn("members", "password"); // add password column
+tako.createColumn("members", "name"); // add name column
+tako.createColumn("members", "password"); // add password column
 
 const datas: {
   name: string,
