@@ -75,7 +75,7 @@ NameList.forEach(name => {
   **/
 })
 
-const firstUser: string[] | null = tako.getRow("members", "id", 0); // Search by row value from column in Table
+const firstUser: string[] | false = tako.getRow("members", "id", 0); // Search by row value from column in Table
 
 console.log(firstUser ?? firstUser[0]); // Amex
 
@@ -117,7 +117,7 @@ MemberList3.forEach(row => {
 tako.deleteTable("members"); // delete Table
 tako.update(); // Update KV
 
-console.log(tako.getTable("members")); // null
+console.log(tako.getTable("members")); // false
 ```
 
 | id | name | password|

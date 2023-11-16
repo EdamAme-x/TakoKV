@@ -15,7 +15,18 @@ export class TakoKV {
       this.KV.set(["_takokv_last"], Date.now()) // last update
     }
 
-    this.before = this.KV.get(["_takokv_db"]);
+    this._setup();
+  }
+
+  async _setup() {
+
+    const tables = await this.KV.list({ prefix: ["_takokv_db"] });
+
+    this.before = {};
+    for await (const table of tables {
+      this.before[table.key[1]] = table.value;
+      // { {TableName: string}: {TableValue: any} }
+    })
     this.current = Object.create(this.before);
   }
 
@@ -39,13 +50,16 @@ export class TakoKV {
     return false;
   }
   
-  update(): boolean {
+  async update(): boolean {
     if (lodash.isEqual(this.before, this.current)) {
       return false;
     } // Non Update
 
-    this.KV.set(["_takokv_db"], this.current); // update database
-    this.KV.set(["_takokv_last"], Date.now()); // last update time
+    for (const tableName of Object.keys(this.current)) {
+      await this.KV.set(["_takokv_db", tableName], this.current[tableName]);
+    }
+    
+    await this.KV.set(["_takokv_last"], Date.now()); // last update time
 
     this.before = Object.create(this.current); // Executed
     return true;
