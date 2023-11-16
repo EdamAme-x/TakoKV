@@ -59,19 +59,18 @@ export class TakoKV {
   }
 
   insertRow(tableName: string, rowId: number, row: {
-    [key: string]: any
-  }): boolean {
-    
-    // push row [row, row, {}, row] <= INSERT ROW
-    
-    for (const key of Object.keys(row)) {
-      this.current[tableName][key] = this._shiftArray(this.current[tableName][key], rowId);
-      this.current[tableName][key][rowId] = row[key]; // INSERT
-    }
-    
-    this._IDgen(tableName, this.current[tableName][Object.keys(row)[0]].length);
+  [key: string]: any
+ }): boolean {
+      for (const key of Object.keys(row)) {
+        if (!this.current[tableName][key]) {
+          this.current[tableName][key] = Array(rowId).fill(undefined); // 追加
+        }
+        this.current[tableName][key].splice(rowId, 0, row[key]); // 追加
+      }
 
-    return true;
+      this._IDgen(tableName, this.current[tableName][Object.keys(row)[0]].length);
+
+      return true;
   }
 
   getRows(tableName: string): number {
@@ -131,7 +130,7 @@ export class TakoKV {
     }
     array[array.length - 1] = undefined; // empty (will insert)
     return array;
-  }
+  } // subset
 
   _removeAndShift(arr: any[], index: number): any[] {
     arr.splice(index, 1);
