@@ -1,3 +1,5 @@
+import * as lodash from "https://deno.land/x/lodash@4.17.19/dist/lodash.min.js";
+
 export class TakoKV {
   constructor(
     public DenoKV: unknown
@@ -10,9 +12,13 @@ export class TakoKV {
 
   update(): boolean {
 
-    if (Object.) {
-      
-    }
+    if (lodash.isEqual(this.before, this.current)) {
+      return false;
+    } // Non Update
+
+    // Update Start
+
+    // Update End
     
     this.before = this.current; // Executed
     return true;
