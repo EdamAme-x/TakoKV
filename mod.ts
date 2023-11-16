@@ -65,10 +65,7 @@ export class TakoKV {
     // push row [row, row, {}, row] <= INSERT ROW
     
     for (const key of Object.keys(row)) {
-      if (!this.current[tableName][key]) {
-        console.log(this.current[tableName][key])
-        continue;
-      }
+      console.log(this.current[tableName])
       this.current[tableName][key] = this._shiftArray(this.current[tableName][key], columnId);
       this.current[tableName][key][columnId] = row[key]; // INSERT
     }
