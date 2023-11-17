@@ -1,4 +1,4 @@
-import * as lodash from "https://deno.land/x/lodash@4.17.19/dist/lodash.min.js";
+import lodash from "https://deno.land/x/lodash@4.17.19/dist/lodash.min.js";
 import { DB, KValue, Table } from "./mod.d.ts";
 
 export class TakoKV {
