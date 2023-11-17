@@ -40,10 +40,6 @@ for (let i = 0; i < datas.length; i++ ) {
     "name": datas[i].name,
     "password": datas[i].password
   });
-  tako.insertRow("members", i, {
-    "name": datas[i].name,
-    "password": datas[i].password
-  });
 }
 
 /** Get **/
