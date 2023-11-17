@@ -96,10 +96,10 @@ export class TakoKV {
     return this.getTable(tableName)[columnName]
   }
 
-  getRow(tableName: string, columnName: string, searchValue: any): any[] | null {
+  getSearchRow(tableName: string, columnName: string, searchValue: any): any[] | null {
     let tragetIndex = null;
     
-   const searchResult: any[] | undefined = this.getTable(tableName)[columnName].find((row: any) => row[columnName]);
+   const searchResult: any[] | undefined = this.getTable(tableName)[columnName].find((row: any) => row === searchValue);
 
     if (searchResult === undefined) {
       return null;
