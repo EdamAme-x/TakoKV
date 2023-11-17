@@ -39,12 +39,19 @@ export class TakoKV {
     return false;
   }
 
-  createTable(tableName: string): boolean {
+  createTable(tableName: string, columns?: string[]): boolean {
     if (this.current[tableName]) {
       return false;
     } // if table exist
 
     this.current[tableName] = {}; // create empty table
+
+    if (columns) {
+      for (let i = 0; i < columns.length; i++ ) {
+        this.current[tableName][columns[i]] = []; // create empty column
+      }
+    }
+    
     return true;
   }
 
