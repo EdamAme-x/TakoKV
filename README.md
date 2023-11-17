@@ -15,9 +15,11 @@ await tako.setup();
 
 /** Set / Create **/
 
-tako.createTable("members"); // only id
-tako.createColumn("members", "name"); // add name column
-tako.createColumn("members", "password"); // add password column
+tako.createTable("members", ["name", "password"]); // TableName, ...columns
+
+// tako.createColumn("members", "name"); // add name column
+// tako.createColumn("members", "password"); // add password column
+// old
 
 const datas: {
   name: string,
